@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="fontawesome-free-6.6.0-web/fontawesome-free-6.6.0-web/css/all.css">
+
+    <style>
+          body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* button{
+            padding: 25px;
+            font-size: 25px;
+        }
+        #control{
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            text-align: center;
+        } */
+        #plane {
+            position: relative;
+            top: 0;
+            left: 0;
+            font-size: 50px;
+            transition: top 0.1s, left 0.1s;
+        }
+        #building {
+            position: absolute;
+            right: 20px;
+            top: 0;
+            font-size: 50px;
+            transition: top 0.05s;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="plane"><i class="fa-solid fa-plane"></i></h1>
+    <h1 id="building"><i class="fa-solid fa-building"></i></h1>
+    <!-- <div id="control">
+        <div><button id="up"><i class="fa-solid fa-arrow-up"></i></button></div>
+        <button id="left"><i class="fa-solid fa-arrow-left"></i></button>
+        <button id="right"><i class="fa-solid fa-arrow-right"></i></button>
+        <div><button id="down"><i class="fa-solid fa-arrow-down"></i></button></div>
+    </div> -->
+    <script>
+        let building = document.getElementById("building");
+        let buildingTop = 0;
+        let direction = 1; 
+
+    setInterval(() => {
+      buildingTop += direction * 2;
+      if (buildingTop >= window.innerHeight - 100 || buildingTop <= 0) {
+        direction *= -1;
+      }
+      building.style.top = buildingTop + "px";
+    }, 20);
+
+        let moveTop=0
+        let moveLeft=0
+        const plane=document.getElementById("plane")
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "ArrowUp") {
+                moveTop -= 10;
+            } else if (event.key === "ArrowDown") {
+                moveTop += 10;
+            } else if (event.key === "ArrowLeft") {
+                moveLeft -= 10;
+            } else if (event.key === "ArrowRight") {
+                moveLeft += 10;
+            }
+            plane.style.top = moveTop + "px";
+            plane.style.left = moveLeft + "px";
+        });
+    </script>
+</body>
+</html>
